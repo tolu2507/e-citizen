@@ -1,0 +1,7 @@
+{
+  "name": "E-Citizen",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
