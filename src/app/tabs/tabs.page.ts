@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActionService } from '../services/user/action.service';
 
 @Component({
   selector: 'app-tabs',
@@ -7,6 +8,11 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+  constructor(private userService: ActionService) { }
+
+  async loadTab2() {
+    this.userService.datas.length = 0
+    await this.userService.getUserProfile()
+  }
 
 }

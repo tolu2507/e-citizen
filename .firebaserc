@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "e-citizen-8f11f": {
+      "hosting": {
+        "app": [
+          "e-citizen-8f11f"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "e-citizen-8f11f"
+  }
+}

@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="secondary">
     <ion-title>
-      Tab 1
+      E-CITIZEN
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,60 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">E-CITIZEN</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-content *ngIf="!user">
+    <form (ngSubmit)="login()" [formGroup]="credentials">
+      <ion-item fill="solid" class="ion-margin-bottom">
+        <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+        <ion-note slot="error" *ngIf="(!email || email.touched)">Email is invalid</ion-note>
+      </ion-item>
+      <ion-item fill="solid" class="ion-margin-bottom">
+        <ion-input type="displayName" placeholder="Password" formControlName="password"></ion-input>
+        <ion-note slot="error" *ngIf="(!password || password.touched)">Password needs to be 6
+          characters</ion-note>
+      </ion-item>
+      <ion-button type="submit" expand="block" [disabled]="!credentials.valid" *ngIf="setUser === true" color="success"
+        shape="rounded">Log in</ion-button>
+      <ion-button type="button" expand="block" color="secondary" (click)="register()" *ngIf="setUser === false"
+        color="primary" shape="rounded">Create
+        account</ion-button>
+    </form>
+    <pre></pre>
+    <ion-card>
+      <ion-button type="button" expand="block" color="success" shape="rounded" (click)="googleSignin()">Sign in with
+        google</ion-button>
+    </ion-card>
+  </ion-content>
+
+  <ion-content *ngIf="user">
+    <ion-item>
+      <ion-input type="text" placeholder="Title" [formControl]="title"></ion-input>
+      <ion-note slot="error" *ngIf="(!title || title.touched)">title is invalid</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-textarea type="text" placeholder="Details" [formControl]="details" autoGrow="true"></ion-textarea>
+      <ion-note slot="error" *ngIf="(!details || details.touched)">details needs to be 6
+        characters</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" placeholder="categories" [formControl]="categories" autoGrow="true"></ion-input>
+      <ion-note slot="error" *ngIf="(!categories || categories.touched)">categories
+        needs to either incident or occassion or trends</ion-note>
+    </ion-item>
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-img [src]="image" alt="imagetext"></ion-img>
+    </ion-item>
+    <ion-button (click)="Upload(title.value)">
+      <ion-icon name="add-circle"></ion-icon>
+    </ion-button>
+    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+      <ion-fab-button (click)="create(title.value, details.value, categories.value)">
+        <ion-icon name="add-circle-sharp"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-content>
 
   <app-explore-container name="Tab 1 page"></app-explore-container>
 </ion-content>
